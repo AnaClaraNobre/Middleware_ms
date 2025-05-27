@@ -1,14 +1,13 @@
 package ecommerce.middleware.controller;
 
+import ecommerce.middleware.auth.dto.LoginRequestDTO;
+import ecommerce.middleware.auth.dto.RegisterRequestDTO;
+import ecommerce.middleware.auth.dto.LoginResponseDTO;
 import ecommerce.middleware.service.AuthService;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import com.ecommerce.auth.dto.LoginRequestDTO;
-import com.ecommerce.auth.dto.LoginResponseDTO;
-import com.ecommerce.auth.dto.RegisterRequestDTO;
 
 @RestController
 @RequestMapping("/auth")

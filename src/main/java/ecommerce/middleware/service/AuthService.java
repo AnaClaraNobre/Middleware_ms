@@ -4,10 +4,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import com.ecommerce.auth.dto.LoginRequestDTO;
-import com.ecommerce.auth.dto.LoginResponseDTO;
-import com.ecommerce.auth.dto.RegisterRequestDTO;
 
+import ecommerce.middleware.auth.dto.LoginRequestDTO;
+import ecommerce.middleware.auth.dto.LoginResponseDTO;
+import ecommerce.middleware.auth.dto.RegisterRequestDTO;
 import ecommerce.middleware.jwt.JwtTokenProvider;
 
 @Service

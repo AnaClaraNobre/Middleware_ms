@@ -12,8 +12,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ecommerce.middleware.jwt.JwtTokenProvider;
-import ecommerce.user.dtos.AddressDTO;
-import ecommerce.user.dtos.ProfileDTO;
+import ecommerce.middleware.user.dto.AddressDTO;
+import ecommerce.middleware.user.dto.ProfileDTO;
+
 
 @Service
 public class UserService {

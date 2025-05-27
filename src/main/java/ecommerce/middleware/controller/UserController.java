@@ -6,8 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import ecommerce.middleware.service.UserService;
-import ecommerce.user.dtos.AddressDTO;
-import ecommerce.user.dtos.ProfileDTO;
+import ecommerce.middleware.user.dto.AddressDTO;
+import ecommerce.middleware.user.dto.ProfileDTO;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 
 @RestController
