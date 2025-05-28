@@ -9,8 +9,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout do código
+      - name: Checkout do código do Middleware
         uses: actions/checkout@v3
+
+      - name: Clonar repositório do User
+        run: git clone https://github.com/AnaClaraNobre/User_Ms.git ../user_ms
+
+      - name: Clonar repositório do Authenticator
+        run: git clone https://github.com/AnaClaraNobre/Authenticator-Ms.git ../authenticator
+
+      - name: Instalar User_MS localmente
+        run: |
+          cd ../user_ms
+          mvn install -DskipTests
+
+      - name: Instalar Authenticator_MS localmente
+        run: |
+          cd ../authenticator
+          mvn install -DskipTests
+
+      - name: Voltar para o Middleware
+        run: cd ../Middleware_ms
 
       - name: Set up JDK 17
         uses: actions/setup-java@v3
@@ -39,4 +58,4 @@ jobs:
           script: |
             docker pull ${{ secrets.DOCKER_USERNAME }}/middleware_ms:latest
             docker stop middleware_ms || true && docker rm middleware_ms || true
-            docker run -d --name middleware_ms -p 8090:8090 --network host ${{ secrets.DOCKER_USERNAME }}/middleware_ms:latest
+            docker run -d --name middleware_ms -p 8090:8090 ${{ secrets.DOCKER_USERNAME }}/middleware_ms:latest
