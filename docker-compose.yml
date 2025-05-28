@@ -7,7 +7,7 @@ services:
     depends_on:
       - auth
       - user
-      # - product
+      - product
 
   auth:
     build: ../authenticator
@@ -19,7 +19,7 @@ services:
     ports:
       - "8082:8082"
 
-  # product:
-  #   build: ../Ecommerce-Product
-  #   ports:
-  #     - "8083:8083"
+  product:
+    build: ../Ecommerce-Product
+    ports:
+      - "8083:8083"
