@@ -28,6 +28,11 @@ jobs:
           cd ../authenticator
           mvn install -DskipTests
 
+      - name: Instalar Product_MS localmente
+        run: |
+          cd ../Ecommerce-Product
+          mvn install -DskipTests
+
       - name: Voltar para o Middleware
         run: cd ../Middleware_ms
 
