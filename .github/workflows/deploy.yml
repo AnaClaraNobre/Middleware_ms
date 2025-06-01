@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Clonar repositório do Product
-        run: git clone git@github.com:angelodrigues/ecommerce_product.git ../ecommerce_product
+        run: git clone https://github.com/angelodrigues/ecommerce_product.git ../ecommerce_product
 
       - name: Clonar repositório do Order
         run: git clone https://github.com/angelodrigues/ecommerce_orders.git ../ecommerce_order
