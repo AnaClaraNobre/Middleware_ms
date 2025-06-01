@@ -8,6 +8,8 @@ services:
       - auth
       - user
       - product
+      # - order
+      # - payment
 
   auth:
     build: ../ecommerce_authenticator
@@ -24,7 +26,12 @@ services:
     ports:
       - "8083:8083"
 
-  order:
-    build: ../ecommerce_order
-    ports:
-      - "8084:8084"
+  # order:
+  #   build: ../ecommerce_order
+  #   ports:
+  #     - "8084:8084"
+
+  # payment:
+  #   build: ../ecommerce_payment
+  #   ports:
+  #     - "8085:8085"
