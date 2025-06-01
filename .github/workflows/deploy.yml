@@ -12,6 +12,12 @@ jobs:
       - name: Checkout do código do Middleware
         uses: actions/checkout@v3
 
+      - name: Clonar repositório do Product
+        run: git clone git@github.com:angelodrigues/ecommerce_product.git ../ecommerce_product
+
+      - name: Clonar repositório do Order
+        run: git clone https://github.com/angelodrigues/ecommerce_orders.git ../ecommerce_order
+
       - name: Clonar repositório do User
         run: git clone https://github.com/AnaClaraNobre/User_Ms.git ../user_ms
 
@@ -30,7 +36,12 @@ jobs:
 
       - name: Instalar Product_MS localmente
         run: |
-          cd ../Ecommerce-Product
+          cd ../ecommerce_product
+          mvn install -DskipTests
+
+      - name: Instalar Order_MS localmente
+        run: |
+          cd ../ecommerce_order
           mvn install -DskipTests
 
       - name: Voltar para o Middleware

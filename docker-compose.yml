@@ -10,16 +10,21 @@ services:
       - product
 
   auth:
-    build: ../authenticator
+    build: ../ecommerce_authenticator
     ports:
       - "8081:8081"
 
   user:
-    build: ../user_ms
+    build: ../ecommerce_user
     ports:
       - "8082:8082"
 
   product:
-    build: ../Ecommerce-Product
+    build: ../ecommerce_product
     ports:
       - "8083:8083"
+
+  order:
+    build: ../ecommerce_order
+    ports:
+      - "8084:8084"
