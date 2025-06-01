@@ -15,11 +15,11 @@ jobs:
       - name: Clonar repositório do Product
         run: git clone https://github.com/angelodrigues/ecommerce_product.git ../ecommerce_product
 
-      # - name: Clonar repositório do Order
-      #   run: git clone https://github.com/angelodrigues/ecommerce_orders.git ../ecommerce_order
+      - name: Clonar repositório do Order
+        run: git clone https://github.com/angelodrigues/ecommerce_orders.git ../ecommerce_order
 
-      # - name: Clonar repositório do Payment
-      #   run: git clone https://github.com/angelodrigues/ecommerce_payment.git ../ecommerce_payment
+      - name: Clonar repositório do Payment
+        run: git clone https://github.com/angelodrigues/ecommerce_payment.git ../ecommerce_payment
 
       - name: Clonar repositório do User
         run: git clone https://github.com/AnaClaraNobre/User_Ms.git ../user_ms
@@ -42,15 +42,15 @@ jobs:
           cd ../ecommerce_product
           mvn install -DskipTests
 
-      # - name: Instalar Order_MS localmente
-      #   run: |
-      #     cd ../ecommerce_order
-      #     mvn install -DskipTests
+      - name: Instalar Order_MS localmente
+        run: |
+          cd ../ecommerce_order
+          mvn install -DskipTests
 
-      # - name: Instalar Payment_MS localmente
-      #   run: |
-      #     cd ../ecommerce_payment
-      #     mvn install -DskipTests
+      - name: Instalar Payment_MS localmente
+        run: |
+          cd ../ecommerce_payment
+          mvn install -DskipTests
 
       - name: Voltar para o Middleware
         run: cd ../Middleware_ms
