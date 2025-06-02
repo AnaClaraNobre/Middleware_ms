@@ -61,9 +61,12 @@ jobs:
           username: ec2-user
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
+            echo "Criando rede ecommerce-net (se não existir)..."
+            docker network inspect ecommerce-net >/dev/null 2>&1 || docker network create ecommerce-net
+
             echo "Parando e removendo containers antigos..."
-            docker stop middleware_ms middleware1 middleware2 || true
-            docker rm middleware_ms middleware1 middleware2 || true
+            docker stop middlewarems || true
+            docker rm middlewarems || true
 
             echo "Puxando nova imagem..."
             docker pull ${{ secrets.DOCKER_USERNAME }}/middleware_ms:latest
@@ -72,8 +75,8 @@ jobs:
             docker stats --no-stream
             free -h
 
-            echo "Subindo container principal (middleware_ms)..."
-            docker run -d --name middleware_ms -p 8090:8090 ${{ secrets.DOCKER_USERNAME }}/middleware_ms:latest
+            echo "Subindo container principal (middlewarems)..."
+            docker run -d --name middlewarems -p 8090:8090 --network ecommerce-net ${{ secrets.DOCKER_USERNAME }}/middleware_ms:latest
             sleep 5
 
             echo "Monitorando recursos APÓS o deploy:"
