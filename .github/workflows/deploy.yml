@@ -68,9 +68,14 @@ jobs:
             echo "Puxando nova imagem..."
             docker pull ${{ secrets.DOCKER_USERNAME }}/middleware_ms:latest
 
+            echo "Monitorando recursos ANTES do deploy:"
+            docker stats --no-stream
+            free -h
+
             echo "Subindo container principal (middleware_ms)..."
             docker run -d --name middleware_ms -p 8090:8090 ${{ secrets.DOCKER_USERNAME }}/middleware_ms:latest
+            sleep 5
 
-            echo "Subindo instâncias para Prometheus e Load Balancer..."
-            docker run -d --name middleware1 -p 8091:8090 ${{ secrets.DOCKER_USERNAME }}/middleware_ms:latest
-            docker run -d --name middleware2 -p 8092:8090 ${{ secrets.DOCKER_USERNAME }}/middleware_ms:latest
+            echo "Monitorando recursos APÓS o deploy:"
+            docker stats --no-stream
+            free -h
