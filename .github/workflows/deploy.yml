@@ -64,9 +64,12 @@ jobs:
             echo "Criando rede ecommerce-net (se não existir)..."
             docker network inspect ecommerce-net >/dev/null 2>&1 || docker network create ecommerce-net
 
-            echo "Parando e removendo containers antigos..."
-            docker stop middlewarems || true
-            docker rm middlewarems || true
+            echo "Parando containers que usam a porta 8090..."
+            docker ps --filter "publish=8090" --format "{{.ID}}" | xargs -r docker stop
+
+            echo "Removendo containers com nome middlewarems ou que usavam porta 8090..."
+            docker ps -a --filter "name=middlewarems" --format "{{.ID}}" | xargs -r docker rm -f
+            docker ps -a --filter "publish=8090" --format "{{.ID}}" | xargs -r docker rm -f
 
             echo "Puxando nova imagem..."
             docker pull ${{ secrets.DOCKER_USERNAME }}/middleware_ms:latest
