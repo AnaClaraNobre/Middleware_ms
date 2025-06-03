@@ -12,30 +12,6 @@ jobs:
       - name: Checkout do código do Middleware
         uses: actions/checkout@v3
 
-      - name: Clonar repositório do Product
-        run: git clone https://github.com/angelodrigues/ecommerce_product.git ../ecommerce_product
-
-      - name: Clonar repositório do Order
-        run: git clone https://github.com/angelodrigues/ecommerce_orders.git ../ecommerce_order
-
-      - name: Clonar repositório do Payment
-        run: git clone https://github.com/angelodrigues/ecommerce_payment.git ../ecommerce_payment
-
-      - name: Clonar repositório do User
-        run: git clone https://github.com/AnaClaraNobre/User_Ms.git ../user_ms
-
-      - name: Clonar repositório do Authenticator
-        run: git clone https://github.com/AnaClaraNobre/Authenticator-Ms.git ../authenticator
-
-      - name: Instalar todos os MS localmente
-        run: |
-          cd ../user_ms && mvn install -DskipTests
-          cd ../authenticator && mvn install -DskipTests
-          cd ../ecommerce_product && mvn install -DskipTests
-          cd ../ecommerce_order && mvn install -DskipTests
-          cd ../ecommerce_payment && mvn install -DskipTests
-          cd ../Middleware_ms
-
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
@@ -64,24 +40,12 @@ jobs:
             echo "Criando rede ecommerce-net (se não existir)..."
             docker network inspect ecommerce-net >/dev/null 2>&1 || docker network create ecommerce-net
 
-            echo "Parando containers que usam a porta 8090..."
-            docker ps --filter "publish=8090" --format "{{.ID}}" | xargs -r docker stop
-
-            echo "Removendo containers com nome middlewarems ou que usavam porta 8090..."
-            docker ps -a --filter "name=middlewarems" --format "{{.ID}}" | xargs -r docker rm -f
-            docker ps -a --filter "publish=8090" --format "{{.ID}}" | xargs -r docker rm -f
+            echo "Parando e removendo container antigo do middlewarems..."
+            docker stop middlewarems || true
+            docker rm middlewarems || true
 
             echo "Puxando nova imagem..."
             docker pull ${{ secrets.DOCKER_USERNAME }}/middleware_ms:latest
 
-            echo "Monitorando recursos ANTES do deploy:"
-            docker stats --no-stream
-            free -h
-
-            echo "Subindo container principal (middlewarems)..."
+            echo "Subindo novo container do middlewarems..."
             docker run -d --name middlewarems -p 8090:8090 --network ecommerce-net ${{ secrets.DOCKER_USERNAME }}/middleware_ms:latest
-            sleep 5
-
-            echo "Monitorando recursos APÓS o deploy:"
-            docker stats --no-stream
-            free -h
