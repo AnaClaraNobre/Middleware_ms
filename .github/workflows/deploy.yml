@@ -18,7 +18,14 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Build com Maven
+      - name: Clonar e instalar User_MS
+        run: |
+          git clone https://github.com/AnaClaraNobre/User_Ms.git ../user_ms
+
+          cd ../user_ms
+          mvn install -DskipTests
+
+      - name: Build do Middleware com Maven
         run: mvn clean package -DskipTests
 
       - name: Login no Docker Hub
