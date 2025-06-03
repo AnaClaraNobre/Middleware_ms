@@ -21,7 +21,6 @@ jobs:
       - name: Clonar e instalar User_MS
         run: |
           git clone https://github.com/AnaClaraNobre/User_Ms.git ../user_ms
-
           cd ../user_ms
           mvn install -DskipTests
 
@@ -34,8 +33,12 @@ jobs:
       - name: Build da imagem Docker
         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/middleware_ms:latest .
 
-      - name: Push da imagem Docker
-        run: docker push ${{ secrets.DOCKER_USERNAME }}/middleware_ms:latest
+      - name: Push da imagem Docker com retry e upload sequencial
+        run: |
+          for i in {1..3}; do
+            echo "Tentativa $i de push..."
+            docker --config ~/.docker push --max-concurrent-uploads=1 ${{ secrets.DOCKER_USERNAME }}/middleware_ms:latest && break || sleep 10
+          done
 
       - name: Deploy na EC2 via SSH
         uses: appleboy/ssh-action@v1.0.0
