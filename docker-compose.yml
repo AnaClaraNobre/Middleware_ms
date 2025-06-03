@@ -24,7 +24,7 @@ services:
   product:
     build: ../ecommerce_product
     ports:
-      - "8083:8083"
+      - "8089:8089"
 
   order:
     build: ../ecommerce_order
