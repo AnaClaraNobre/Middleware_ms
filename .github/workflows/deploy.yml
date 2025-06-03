@@ -37,7 +37,7 @@ jobs:
         run: |
           for i in {1..3}; do
             echo "Tentativa $i de push..."
-            docker push ${{ secrets.DOCKER_USERNAME }}/frontend:latest && break || sleep 15
+            docker push ${{ secrets.DOCKER_USERNAME }}/middleware_ms:latest && break || sleep 15
           done
 
       - name: Deploy na EC2 via SSH
