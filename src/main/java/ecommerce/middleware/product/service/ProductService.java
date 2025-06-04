@@ -26,7 +26,7 @@ public class ProductService {
     }
 
     public List<ProductDTO> findAll() {
-        String endpoint = productServiceUrl + "/product";
+        String endpoint = productServiceUrl + "/products";
         
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -43,7 +43,7 @@ public class ProductService {
     }
 
     public Optional<ProductDTO> findById(Long id) {
-        String endpoint = productServiceUrl + "/product/" + id;
+        String endpoint = productServiceUrl + "/products/" + id;
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -63,7 +63,7 @@ public class ProductService {
     }
 
     public ProductDTO create(ProductDTO productDTO, Long authUserId) {
-        String endpoint = productServiceUrl + "/product";
+        String endpoint = productServiceUrl + "/products";
 
         String token = jwtTokenProvider.generateToken(authUserId);
 
@@ -83,7 +83,7 @@ public class ProductService {
     }
 
     public ProductDTO update(Long id, ProductDTO productDTO, Long authUserId) {
-        String endpoint = productServiceUrl + "/product/" + id;    
+        String endpoint = productServiceUrl + "/products/" + id;    
 
         String token = jwtTokenProvider.generateToken(authUserId);
 
@@ -103,7 +103,7 @@ public class ProductService {
     }
 
     public void deleteById(Long id, Long authUserId) {
-        String endpoint = productServiceUrl + "/product/" + id;
+        String endpoint = productServiceUrl + "/products/" + id;
 
         String token = jwtTokenProvider.generateToken(authUserId);
 
