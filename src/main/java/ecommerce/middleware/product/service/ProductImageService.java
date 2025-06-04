@@ -26,7 +26,7 @@ public class ProductImageService {
     }
 
     public List<ProductImageDTO> findAll() {
-        String endpoint = productServiceUrl + "/product-image";
+        String endpoint = productServiceUrl + "/product-images";
         
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -43,7 +43,7 @@ public class ProductImageService {
     }
 
     public Optional<ProductImageDTO> findById(Long id) {
-        String endpoint = productServiceUrl + "/product-image/" + id;
+        String endpoint = productServiceUrl + "/product-images/" + id;
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -63,7 +63,7 @@ public class ProductImageService {
     }
 
     public Optional<ProductImageDTO> findImageByProductId(Long productId) {
-        String endpoint = productServiceUrl + "/product-image/product/" + productId;
+        String endpoint = productServiceUrl + "/product-images/product/" + productId;
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -83,7 +83,7 @@ public class ProductImageService {
     }
 
     public List<ProductImageDTO> findAllImagesBySupplierId(Long supplierId) {
-        String endpoint = productServiceUrl + "/product-image/supplier/" + supplierId;
+        String endpoint = productServiceUrl + "/product-images/supplier/" + supplierId;
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -100,7 +100,7 @@ public class ProductImageService {
     }
 
     public ProductImageDTO create(ProductImageDTO productImageDTO, Long authUserId) {
-        String endpoint = productServiceUrl + "/product-image";
+        String endpoint = productServiceUrl + "/product-images";
 
         String token = jwtTokenProvider.generateToken(authUserId);
 
@@ -120,7 +120,7 @@ public class ProductImageService {
     }
 
     public ProductImageDTO update(Long id, ProductImageDTO productImageDTO, Long authUserId) {
-        String endpoint = productServiceUrl + "/product-image/" + id;
+        String endpoint = productServiceUrl + "/product-images/" + id;
 
         String token = jwtTokenProvider.generateToken(authUserId);
 
@@ -140,7 +140,7 @@ public class ProductImageService {
     }
 
     public void deleteById(Long id, Long authUserId) {
-        String endpoint = productServiceUrl + "/product-image/" + id;
+        String endpoint = productServiceUrl + "/product-images/" + id;
 
         String token = jwtTokenProvider.generateToken(authUserId);
 

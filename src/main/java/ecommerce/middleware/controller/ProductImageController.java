@@ -10,7 +10,7 @@ import ecommerce.middleware.product.dto.ProductImageDTO;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 
 @RestController
-@RequestMapping("/product-image")
+@RequestMapping("/product-images")
 public class ProductImageController {
 
     private final ProductImageService productImageService;
