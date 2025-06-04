@@ -25,13 +25,10 @@ public class ProductImageService {
         this.jwtTokenProvider = jwtTokenProvider;
     }
 
-    public List<ProductImageDTO> findAll(Long authUserId) {
+    public List<ProductImageDTO> findAll() {
         String endpoint = productServiceUrl + "/product-image";
         
-        String token = jwtTokenProvider.generateToken(authUserId);
-        
         HttpHeaders headers = new HttpHeaders();
-        headers.setBearerAuth(token);
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         HttpEntity<Void> entity = new HttpEntity<>(headers);
@@ -45,13 +42,10 @@ public class ProductImageService {
         return Arrays.asList(response.getBody());
     }
 
-    public Optional<ProductImageDTO> findById(Long id, Long authUserId) {
+    public Optional<ProductImageDTO> findById(Long id) {
         String endpoint = productServiceUrl + "/product-image/" + id;
 
-        String token = jwtTokenProvider.generateToken(authUserId);
-
         HttpHeaders headers = new HttpHeaders();
-        headers.setBearerAuth(token);
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         HttpEntity<Void> entity = new HttpEntity<>(headers);
@@ -68,13 +62,10 @@ public class ProductImageService {
         }
     }
 
-    public Optional<ProductImageDTO> findImageByProductId(Long productId, Long authUserId) {
+    public Optional<ProductImageDTO> findImageByProductId(Long productId) {
         String endpoint = productServiceUrl + "/product-image/product/" + productId;
 
-        String token = jwtTokenProvider.generateToken(authUserId);
-
         HttpHeaders headers = new HttpHeaders();
-        headers.setBearerAuth(token);
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         HttpEntity<Void> entity = new HttpEntity<>(headers);
@@ -91,13 +82,10 @@ public class ProductImageService {
         }
     }
 
-    public List<ProductImageDTO> findAllImagesBySupplierId(Long supplierId, Long authUserId) {
+    public List<ProductImageDTO> findAllImagesBySupplierId(Long supplierId) {
         String endpoint = productServiceUrl + "/product-image/supplier/" + supplierId;
 
-        String token = jwtTokenProvider.generateToken(authUserId);
-
         HttpHeaders headers = new HttpHeaders();
-        headers.setBearerAuth(token);
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         HttpEntity<Void> entity = new HttpEntity<>(headers);

@@ -22,16 +22,14 @@ public class ProductController {
 
     @CircuitBreaker(name = "default", fallbackMethod = "fallbackProductList")
     @GetMapping
-    public ResponseEntity<List<ProductDTO>> findAll(Authentication authentication) {
-        Long userId = (Long) authentication.getPrincipal();
-        return ResponseEntity.ok(productService.findAll(userId));
+    public ResponseEntity<List<ProductDTO>> findAll() {
+        return ResponseEntity.ok(productService.findAll());
     }
 
     @CircuitBreaker(name = "default", fallbackMethod = "fallbackProduct")
     @GetMapping("/{id}")
-    public ResponseEntity<ProductDTO> findById(@PathVariable Long id, Authentication authentication) {
-        Long userId = (Long) authentication.getPrincipal();
-        return productService.findById(id, userId)
+    public ResponseEntity<ProductDTO> findById(@PathVariable Long id) {
+        return productService.findById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }

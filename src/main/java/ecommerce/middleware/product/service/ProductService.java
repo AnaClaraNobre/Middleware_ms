@@ -25,13 +25,10 @@ public class ProductService {
         this.jwtTokenProvider = jwtTokenProvider;
     }
 
-    public List<ProductDTO> findAll(Long authUserId) {
+    public List<ProductDTO> findAll() {
         String endpoint = productServiceUrl + "/product";
         
-        String token = jwtTokenProvider.generateToken(authUserId);
-        
         HttpHeaders headers = new HttpHeaders();
-        headers.setBearerAuth(token);
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         HttpEntity<Void> entity = new HttpEntity<>(headers);
@@ -45,13 +42,10 @@ public class ProductService {
         return Arrays.asList(response.getBody());
     }
 
-    public Optional<ProductDTO> findById(Long id, Long authUserId) {
+    public Optional<ProductDTO> findById(Long id) {
         String endpoint = productServiceUrl + "/product/" + id;
 
-        String token = jwtTokenProvider.generateToken(authUserId);
-
         HttpHeaders headers = new HttpHeaders();
-        headers.setBearerAuth(token);
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         HttpEntity<Void> entity = new HttpEntity<>(headers);

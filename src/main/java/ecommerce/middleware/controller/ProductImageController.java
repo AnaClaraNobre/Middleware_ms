@@ -21,34 +21,30 @@ public class ProductImageController {
 
     @CircuitBreaker(name = "default", fallbackMethod = "fallbackProductImageList")
     @GetMapping
-    public ResponseEntity<List<ProductImageDTO>> findAll(Authentication authentication) {
-        Long userId = (Long) authentication.getPrincipal();
-        return ResponseEntity.ok(productImageService.findAll(userId));
+    public ResponseEntity<List<ProductImageDTO>> findAll() {
+        return ResponseEntity.ok(productImageService.findAll());
     }
 
     @CircuitBreaker(name = "default", fallbackMethod = "fallbackProductImage")
     @GetMapping("/{id}")
-    public ResponseEntity<ProductImageDTO> findById(@PathVariable Long id, Authentication authentication) {
-        Long userId = (Long) authentication.getPrincipal();
-        return productImageService.findById(id, userId)
+    public ResponseEntity<ProductImageDTO> findById(@PathVariable Long id) {
+        return productImageService.findById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @CircuitBreaker(name = "default", fallbackMethod = "fallbackProductImage")
     @GetMapping("/product/{productId}")
-    public ResponseEntity<ProductImageDTO> findByProductId(@PathVariable Long productId, Authentication authentication) {
-        Long userId = (Long) authentication.getPrincipal();
-        return productImageService.findImageByProductId(productId, userId)
+    public ResponseEntity<ProductImageDTO> findByProductId(@PathVariable Long productId) {
+        return productImageService.findImageByProductId(productId)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @CircuitBreaker(name = "default", fallbackMethod = "fallbackProductImageList")
     @GetMapping("/supplier/{supplierId}")
-    public ResponseEntity<List<ProductImageDTO>> findAllBySupplierId(@PathVariable Long supplierId, Authentication authentication) {
-        Long userId = (Long) authentication.getPrincipal();
-        return ResponseEntity.ok(productImageService.findAllImagesBySupplierId(supplierId, userId));
+    public ResponseEntity<List<ProductImageDTO>> findAllBySupplierId(@PathVariable Long supplierId) {
+        return ResponseEntity.ok(productImageService.findAllImagesBySupplierId(supplierId));
     }
 
     @CircuitBreaker(name = "default", fallbackMethod = "fallbackProductImage")
