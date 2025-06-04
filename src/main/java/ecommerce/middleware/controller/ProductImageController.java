@@ -14,7 +14,7 @@ import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 // import io.swagger.v3.oas.annotations.Operation;
 
 @RestController
-@RequestMapping("/product-images")
+@RequestMapping("/product-image")
 public class ProductImageController {
 
     private final ProductImageService productImageService;
