@@ -26,7 +26,7 @@ public class SupplierService {
     }
 
     public List<SupplierDTO> findAll(Long authUserId) {
-        String endpoint = productServiceUrl + "/supplier";
+        String endpoint = productServiceUrl + "/suppliers";
         
         String token = jwtTokenProvider.generateToken(authUserId);
         
@@ -46,7 +46,7 @@ public class SupplierService {
     }
 
     public Optional<SupplierDTO> findById(Long id, Long authUserId) {
-        String endpoint = productServiceUrl + "/supplier/" + id;
+        String endpoint = productServiceUrl + "/suppliers/" + id;
 
         String token = jwtTokenProvider.generateToken(authUserId);
 
@@ -69,7 +69,7 @@ public class SupplierService {
     }
 
     public SupplierDTO create(SupplierDTO supplierDTO, Long authUserId) {
-        String endpoint = productServiceUrl + "/supplier";
+        String endpoint = productServiceUrl + "/suppliers";
 
         String token = jwtTokenProvider.generateToken(authUserId);
 
@@ -89,7 +89,7 @@ public class SupplierService {
     }
 
     public SupplierDTO update(Long id, SupplierDTO supplierDTO, Long authUserId) {
-        String endpoint = productServiceUrl + "/supplier/" + id;
+        String endpoint = productServiceUrl + "/suppliers/" + id;
 
         String token = jwtTokenProvider.generateToken(authUserId);
 
@@ -109,7 +109,7 @@ public class SupplierService {
     }
 
     public void deleteById(Long id, Long authUserId) {
-        String endpoint = productServiceUrl + "/supplier/" + id;
+        String endpoint = productServiceUrl + "/suppliers/" + id;
 
         String token = jwtTokenProvider.generateToken(authUserId);
 
