@@ -87,11 +87,10 @@ public class ProductImageController {
         }
     }
 
-    @GetMapping("/{id}/image")
-    // @Operation(summary = "Get image as PNG", description = "Retrieves the image in PNG format by its ID")
-    public ResponseEntity<byte[]> getImageAsPng(@PathVariable Long id) {
+    @GetMapping("/{productId}/image")
+    public ResponseEntity<byte[]> getImageAsPngByProductId(@PathVariable Long productId) {
         try {
-            byte[] imageData = productImageService.getImageDataAsPng(id);
+            byte[] imageData = productImageService.getImageDataAsPngByProductId(productId);
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.IMAGE_PNG);
             headers.setContentLength(imageData.length);
