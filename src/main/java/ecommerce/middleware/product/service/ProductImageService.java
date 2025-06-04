@@ -156,4 +156,10 @@ public class ProductImageService {
             Void.class
         );
     }
+
+    public byte[] getImageDataAsPng(Long id) {
+        ProductImageDTO imageDTO = findById(id)
+            .orElseThrow(() -> new RuntimeException("Image not found"));
+        return imageDTO.getImageData();
+    }
 }
