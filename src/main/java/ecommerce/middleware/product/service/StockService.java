@@ -26,7 +26,7 @@ public class StockService {
     }
 
     public List<StockDTO> findAll(Long authUserId) {
-        String endpoint = productServiceUrl + "/stock";
+        String endpoint = productServiceUrl + "/stocks";
         
         String token = jwtTokenProvider.generateToken(authUserId);
         
@@ -46,7 +46,7 @@ public class StockService {
     }
 
     public Optional<StockDTO> findById(Long id, Long authUserId) {
-        String endpoint = productServiceUrl + "/stock/" + id;
+        String endpoint = productServiceUrl + "/stocks/" + id;
 
         String token = jwtTokenProvider.generateToken(authUserId);
 
@@ -69,7 +69,7 @@ public class StockService {
     }
 
     public StockDTO create(StockDTO stockDTO, Long authUserId) {
-        String endpoint = productServiceUrl + "/stock";
+        String endpoint = productServiceUrl + "/stocks";
 
         String token = jwtTokenProvider.generateToken(authUserId);
 
@@ -89,7 +89,7 @@ public class StockService {
     }
 
     public StockDTO update(Long id, StockDTO stockDTO, Long authUserId) {
-        String endpoint = productServiceUrl + "/stock/" + id;
+        String endpoint = productServiceUrl + "/stocks/" + id;
 
         String token = jwtTokenProvider.generateToken(authUserId);
 
@@ -109,7 +109,7 @@ public class StockService {
     }
 
     public void deleteById(Long id, Long authUserId) {
-        String endpoint = productServiceUrl + "/stock/" + id;
+        String endpoint = productServiceUrl + "/stocks/" + id;
 
         String token = jwtTokenProvider.generateToken(authUserId);
 
